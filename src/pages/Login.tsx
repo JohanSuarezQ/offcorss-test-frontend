@@ -6,7 +6,7 @@ import  {useSnackbar}  from '../utils/SnackbarProvider';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
+    const [, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const { showSnackbar } = useSnackbar();
 

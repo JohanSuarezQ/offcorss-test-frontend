@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useSnackbar } from '../utils/SnackbarProvider';
 
 const Register = () => {
@@ -18,13 +17,6 @@ const Register = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4000/api/auth/register', {
-                username,
-                firstName,
-                lastName,
-                email,
-                password,
-            });
 
             showSnackbar('Usuario registrado correctamente. Ahora puedes iniciar sesión.', 'success');
             setErrorMessage('');
