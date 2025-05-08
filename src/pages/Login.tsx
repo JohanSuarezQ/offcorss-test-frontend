@@ -28,8 +28,11 @@ const Login = () => {
             }
         } catch (error: any) {
             console.error("Error al iniciar sesión:", error);
-            const errorMessage = error.response?.data?.message || 'Error al iniciar sesión';
+            const errorMessage = error.response?.status === 401
+                ? 'Credenciales incorrectas. Por favor verifica tu correo y contraseña.'
+                : error.response?.data?.message || 'Error al iniciar sesión';
             showSnackbar(errorMessage, 'error');
+            setErrorMessage(errorMessage);
         }
     };
 
@@ -37,7 +40,6 @@ const Login = () => {
         <div className="flex items-center justify-center vh-100">
         <div className="pa4 black-80 ba b--black-10 br3 shadow-2">
             <h2 className="f3 mb3 tc">Iniciar Sesión</h2>
-            {errorMessage && <p>{errorMessage}</p>}
             <form onSubmit={handleLogin} className="measure center">
                 <div className="mv3">
                     <label htmlFor="email" className="db fw6 lh-copy f6">Correo Electrónico</label>
@@ -48,8 +50,15 @@ const Login = () => {
                         className="pa2 input-reset ba bg-transparent w-100 br3"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                        title="Por favor ingresa un correo electrónico válido."
                     />
+                    <div style={{ minHeight: '20px', visibility: email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'visible' : 'hidden' }}>
+                        <p className="red f6">El correo electrónico no es válido.</p>
+                    </div>
                 </div>
+                
                 <div className="mv3">
                     <label htmlFor="password" className="db fw6 lh-copy f6">Contraseña</label>
                     <input
@@ -59,8 +68,11 @@ const Login = () => {
                         className="pa2 input-reset ba bg-transparent w-100 br3"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
+                        title="Ingresa tu contraseña."
                     />
                 </div>
+
                 <button type="submit" className="f6 link dim br3 ph3 pv2 mv3 dib white bg-mid-gray w-100">
                     Iniciar Sesión
                 </button>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CSVLink } from 'react-csv';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 interface Product {
   productId: string;
@@ -72,20 +73,66 @@ const ProductList = () => {
           placeholder="Buscar producto..."
           value={search}
           onChange={handleSearchChange}
-          className="pa2 input-reset ba b--black bg-transparent w-100 mb3"
+          className="pa3 input-reset ba b--black bg-transparent w-100 mb3 br3"
         />
-        <select value={sort} onChange={(e) => setSort(e.target.value)} className="pa2 input-reset ba b--black bg-transparent mb3">
-          <option value="name">Nombre</option>
-          <option value="price">Precio</option>
-          <option value="brand">Marca</option>
-        </select>
-        <select value={order} onChange={(e) => setOrder(e.target.value)} className="pa2 input-reset ba b--black bg-transparent mb3">
-          <option value="asc">Ascendente</option>
-          <option value="desc">Descendente</option>
-        </select>
+<div className="mb3">
+  <div className="flex mb3">
+    <div className="relative w-50 mr2">
+      <FormControl fullWidth>
+        <InputLabel>Filtrar por</InputLabel>
+        <Select
+          value={sort}
+          label="Filtrar por"
+          onChange={(e) => setSort(e.target.value as string)}
+          sx={{ 
+            borderWidth: 1,
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'gray',
+              borderWidth: 1
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'gray',
+              borderWidth: 1
+            }
+          }}
+        >
+          <MenuItem value="name">Nombre</MenuItem>
+          <MenuItem value="price">Precio</MenuItem>
+          <MenuItem value="brand">Marca</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+
+    <div className="relative w-50">
+      <FormControl fullWidth>
+        <InputLabel>Orden</InputLabel>
+        <Select
+          value={order}
+          label="Orden"
+          onChange={(e) => setOrder(e.target.value as string)}
+          sx={{ 
+            borderWidth: 1,
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'gray',
+              borderWidth: 1
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'gray',
+              borderWidth: 1
+            }
+          }}
+        >
+          <MenuItem value="asc">Ascendente</MenuItem>
+          <MenuItem value="desc">Descendente</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  </div>
+</div>
       </div>
 
-      <div className="mb3">
+      <div className="mb3 flex justify-between items-center">
+        <h3 className="f5 b mb2">Listado de Productos</h3>
         <CSVLink
           data={products}
           headers={[
@@ -95,7 +142,7 @@ const ProductList = () => {
             { label: "Precio", key: "price" },
           ]}
           filename="productos.csv"
-          className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib mb3"
+          className="b ph3 pv2 input-reset ba by-betwe bg-transparent grow pointer f6 dib"
         >
           Exportar a CSV
         </CSVLink>
