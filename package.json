@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://johansuarezq.github.io/offcorss-test-frontend",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc -b && vite build",
