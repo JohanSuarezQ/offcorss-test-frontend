@@ -61,7 +61,6 @@ const ProductList = () => {
   };
 
   const totalPages = Math.ceil(totalProducts / limit);
-  console.log("Total productos:", totalProducts, "Páginas:", totalPages);
 
   return (
     <div className="pa4">

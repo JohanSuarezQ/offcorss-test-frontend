@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import  {useSnackbar}  from '../utils/SnackbarProvider';
 
@@ -14,7 +14,7 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('https://offcorss-test-backend.onrender.com/api/auth/login', {
+            const response = await axios.post('http://localhost:4000/api/auth/login', {
                 email,
                 password,
             });
@@ -79,9 +79,9 @@ const Login = () => {
             </form>
             <p className="mt3 tc">
                 ¿No tienes una cuenta?{" "}
-                <a href="/register" className="link b black underline hover-blue">
+                <Link to="/register" className="link b black underline hover-blue">
                     Regístrate aquí
-                </a>
+                </Link>
             </p>
         </div>
         </div>
