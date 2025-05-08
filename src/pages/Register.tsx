@@ -18,6 +18,24 @@ const Register = () => {
 
         try {
 
+            const response = await fetch('https://offcorss-test-backend.onrender.com/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                })
+            });
+        
+            if (!response.ok) {
+                throw new Error('Error al registrar usuario');
+            }
+
             showSnackbar('Usuario registrado correctamente. Ahora puedes iniciar sesión.', 'success');
             setErrorMessage('');
 
