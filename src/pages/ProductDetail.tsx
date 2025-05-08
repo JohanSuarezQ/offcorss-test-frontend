@@ -45,20 +45,34 @@ const ProductDetail = () => {
   if (!product) return <p>Cargando...</p>;
 
   return (
-    <div className="pa4">
-      <button onClick={() => navigate(-1)} className="b ph3 pv2 mb3 input-reset ba b--black bg-transparent grow pointer f6 dib">
+    <div className="pa4 mw8 center bg-light-gray br3 shadow-3">
+      <button 
+        onClick={() => navigate(-1)} 
+        className="b ph3 pv2 mb4 input-reset ba b--black bg-transparent grow pointer f6 dib"
+      >
         ⬅ Volver
       </button>
-      <h2 className="f3 mb3">{product.productName}</h2>
-      <p><strong>Marca:</strong> {product.brand}</p>
-      <p><strong>Precio:</strong> ${product.price.toLocaleString()}</p>
-      <p><strong>Descripción:</strong> {product.description}</p>
-      {product.images.length > 0 && (
-        <img src={product.images[0].imageUrl} alt={product.productName} width="300" />
-      )}
-      <button onClick={handlePrint} className="mt3 b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
-        Imprimir Detalles
-      </button>
+      
+      <div className="flex-ns justify-between items-start">
+        <div className="w-50-ns mb4 mb0-ns pr4-ns">
+          <h2 className="f2 mb3">{product.productName}</h2>
+          <p className="mb2"><strong>Marca:</strong> {product.brand}</p>
+          <p className="mb2"><strong>Precio:</strong> ${product.price.toLocaleString()}</p>
+          <p className="mb4"><strong>Descripción:</strong> {product.description}</p>
+          <button 
+            onClick={handlePrint} 
+            className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+          >
+            Imprimir Detalles
+          </button>
+        </div>
+        
+        <div className="w-50-ns tc">
+          {product.images.length > 0 && (
+            <img src={product.images[0].imageUrl} alt={product.productName} className="br3 shadow-4 w-100" />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
