@@ -14,7 +14,7 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:4000/api/auth/login', {
+            const response = await axios.post('https://offcorss-test-backend.onrender.com/api/auth/login', {
                 email,
                 password,
             });

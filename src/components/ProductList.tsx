@@ -25,7 +25,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/products/products', {
+        const response = await axios.get('https://offcorss-test-backend.onrender.com/api/products/products', {
           params: {
             page,
             limit,

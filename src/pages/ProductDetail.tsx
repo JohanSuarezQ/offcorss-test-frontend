@@ -20,7 +20,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/products/products/${id}`);
+        const response = await axios.get(`https://offcorss-test-backend.onrender.com/api/products/products/${id}`);
         const item = response.data;
         const formattedProduct: Product = {
           productId: item.productId,

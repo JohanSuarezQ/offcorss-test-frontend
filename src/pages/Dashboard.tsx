@@ -22,7 +22,7 @@ const Dashboard = () => {
                 const token = localStorage.getItem('token');
                 if (!token) return navigate('/');
 
-                const response = await axios.get('http://localhost:4000/api/auth/user', {
+                const response = await axios.get('https://offcorss-test-backend.onrender.com/api/auth/user', {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
